@@ -59,7 +59,6 @@ function create(repository, renderer, events = {}, doc, win) {
         const value = eventList[event](context);
         update(e, view, value);
         repository.save()
-        notify(view);
     }
 
     function update(e, view, value) {
@@ -77,22 +76,5 @@ function create(repository, renderer, events = {}, doc, win) {
         renderer.refresh({
             models: [model]
         }, e);
-    }
-
-    function notify(view) {
-        if (!view.request) return;
-
-        let formData = {};
-        if (view.request.formKey) {
-            formData = repository.models.getFormData(view.request.formKey);
-        }
-
-        const data = {
-            ...view.request,
-            ...{
-                formData
-            }
-        }
-        view.core.request(data);
     }
 }

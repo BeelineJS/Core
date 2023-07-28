@@ -2,7 +2,7 @@ module.exports = {
     create
 }
 
-function create(doc) {
+function create(request) {
     let _userEvents = {};
     let _documentEvents = {};
     let _windowEvents = {};
@@ -27,6 +27,7 @@ function create(doc) {
         documentEvents,
         windowEvents,
         serialize,
+        submit: submitFn(request),
         destroy
     }
 
@@ -93,5 +94,25 @@ function create(doc) {
             arr.push(e.key);
         }
         return arr.join('/');
+    }
+
+    function submitFn(request) {
+        return function submit() {
+            if (!view.request) return;
+
+            let formData = {};
+            if (view.request.formKey) {
+                formData = repository.models.getFormData(view.request.formKey);
+            }
+
+            const data = {
+                ...view.request,
+                ...{
+                    formData
+                }
+            }
+            request(data);
+            // todo add dispatch events
+        }
     }
 }

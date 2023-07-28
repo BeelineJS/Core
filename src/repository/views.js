@@ -44,7 +44,7 @@ function create(request, valueForKey, doc) {
         model: vw.model || null,
         core,
         util: require('./views.utility').create(id, doc),
-        events: require('./views.events').create(doc),
+        events: require('./views.events').create(core.request),
       }
 
       const newView = {
