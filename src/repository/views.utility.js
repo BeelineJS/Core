@@ -13,8 +13,7 @@ function create(id, doc) {
     findFirst,
     findLast,
     findNth,
-    findAll,
-    serializeEvent
+    findAll
   }
 
   function encode(value) {
@@ -77,16 +76,5 @@ function create(id, doc) {
     return items.length < index
       ? null
       : items[index];
-  }
-
-  function serializeEvent(e) {
-    const arr = [e.type];
-    if (e.target && e.target.dataset) {
-      arr.push(e.target.dataset.key);
-    }
-    if (e.key != null) {
-      arr.push(e.key);
-    }
-    return arr.join('/');
   }
 }

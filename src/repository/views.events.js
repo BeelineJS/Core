@@ -26,6 +26,7 @@ function create(doc) {
         userEvents,
         documentEvents,
         windowEvents,
+        serialize,
         destroy
     }
 
@@ -81,5 +82,16 @@ function create(doc) {
 
     function setWindowEvents(events) {
         _windowEvents = { ...events };
+    }
+
+    function serialize(e) {
+        const arr = [e.type];
+        if (e.target && e.target.dataset && e.target.dataset.key) {
+            arr.push(e.target.dataset.key);
+        }
+        if (e.key != null) {
+            arr.push(e.key);
+        }
+        return arr.join('/');
     }
 }

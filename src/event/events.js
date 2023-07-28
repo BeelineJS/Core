@@ -49,14 +49,14 @@ function create(repository, renderer, events = {}, doc, win) {
         }
     }
 
-    function onEvent(context, events) {
-        const { e, util, view } = context;
-        const event = util.serializeEvent(e);
-        if (events == null ||
-            Object.keys(events).length == 0 ||
-            events[event] == null) return;
+    function onEvent(context, eventList) {
+        const { e, events, view } = context;
+        const event = events.serialize(e);
+        if (eventList == null ||
+            Object.keys(eventList).length == 0 ||
+            eventList[event] == null) return;
 
-        const value = events[event](context);
+        const value = eventList[event](context);
         update(e, view, value);
         repository.save()
         notify(view);
