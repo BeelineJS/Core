@@ -29,7 +29,7 @@ function create(id, doc) {
     return el.textContent;
   }
 
-   function textContent(path, value) {
+  function textContent(path, value) {
     return el()
       .querySelector(path)
       .textContent = value;
@@ -40,23 +40,23 @@ function create(id, doc) {
       .querySelector(path)
       .classList;
 
-    if(value){
+    if (value) {
       classList.remove('hidden');
       return;
     }
 
     classList.add('hidden')
   }
-   
+
   function el() {
-     return doc.getElementById(id);
+    return doc.getElementById(id);
   }
 
-   function find(path) {
+  function find(path) {
     return findFirst(path);
   }
 
-   function findFirst(path) {
+  function findFirst(path) {
     return el()
       .querySelector(path);
   }
@@ -65,26 +65,26 @@ function create(id, doc) {
     return [...el().querySelectorAll(path)];
   }
 
- function findLast(path) {
+  function findLast(path) {
     const items = findAll(path);
     return items.length == 0
       ? null
-      : items[items.length-1];
+      : items[items.length - 1];
   }
 
-   function findNth(path, index) {
+  function findNth(path, index) {
     const items = findAll(path);
-    return items.length < index 
+    return items.length < index
       ? null
       : items[index];
   }
 
-  function serializeEvent(e){
+  function serializeEvent(e) {
     const arr = [e.type];
-    if(e.target && e.target.dataset){
+    if (e.target && e.target.dataset) {
       arr.push(e.target.dataset.key);
     }
-    if(e.key != null){
+    if (e.key != null) {
       arr.push(e.key);
     }
     return arr.join('/');

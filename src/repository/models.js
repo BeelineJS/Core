@@ -11,7 +11,7 @@ module.exports = {
 const {
   clone,
   areEqual
-} = require('core.util');
+} = require('../shared/util');
 
 const _models = {};
 

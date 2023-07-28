@@ -3,18 +3,18 @@
 module.exports = {
   resolve: {
     alias: {
-      'core.util': path.resolve("./shared/util"),
-      'core.types': path.resolve("./shared/types")
+      'core.util': path.resolve("./src/shared/util"),
+      'core.types': path.resolve("./src/shared/types")
     },
     fallback: {
       fs: false
     },
     extensions: ['.js']
   },
-  entry: './beeline.js',
+  entry: './src/beeline.js',
   output: {
     filename: 'beeline.js',
-    path: path.resolve('../dist'),
+    path: path.resolve('./dist'),
     library: "BeelineJS"
   },
   module: {

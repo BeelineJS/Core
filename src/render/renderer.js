@@ -1,15 +1,14 @@
-module.exports =  create;
+module.exports = create;
 
 function create(repository, doc, win) {
   const {
     Refresh
-  } = require('core.types')
-    .event.application;
+  } = require('../shared/types').event.application;
 
   const {
     areIntersected,
     distinct
-  } = require('core.util');
+  } = require('../shared/util');
 
   const view = require('./view');
   const layout = require('./layout');
@@ -35,18 +34,18 @@ function create(repository, doc, win) {
 
     const modelKeys = data == null ?
       repository.models.list()
-      .map(i => i.key) :
+        .map(i => i.key) :
       data.models == null ? [] :
-      data
-      .models
-      .filter(m => m.key != null)
-      .map(m => m.key);
+        data
+          .models
+          .filter(m => m.key != null)
+          .map(m => m.key);
 
     const viewModelKeys = data == null || data.viewModels == null ? [] :
       data
-      .viewModels
-      .filter(m => m.key != null)
-      .map(m => m.key);
+        .viewModels
+        .filter(m => m.key != null)
+        .map(m => m.key);
 
     const views = repository.views.list();
     const modelViews = views.filter(view => modelKeys.includes(view.mKey));
@@ -60,17 +59,17 @@ function create(repository, doc, win) {
       const viewModel = repository.viewModels.get(view.vmKey);
       const model = repository.models.get(view.mKey);
       const context = {
-          e,
-          view,
-          viewModel,
-          model,
-          util: view.util,
-          events: view.events,
-          el: view.util.el,
-          doc,
-          win
+        e,
+        view,
+        viewModel,
+        model,
+        util: view.util,
+        events: view.events,
+        el: view.util.el,
+        doc,
+        win
       };
-      
+
       component.render(context);
     })
   }

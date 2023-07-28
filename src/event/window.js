@@ -1,47 +1,44 @@
 module.exports = {
-    create
+  create
 }
 const defaultEvents = ['resize', 'load', 'hashchange'];
 
-function create(repository, win, doc, add, remove, events = defaultEvents) {
+function create(repository, win, doc, add, remove, onEvent, events = defaultEvents) {
 
-    events.forEach(name => win.addEventListener(name, onEvent));
+  events.forEach(name => win.addEventListener(name, onWindowEvent));
 
-    return {
-        add,
-        remove,
-        destroy,
-        _: {
-            onEvent
-        }
+  return {
+    add,
+    remove,
+    destroy,
+    _: {
+      onWindowEvent
     }
+  }
 
-   function onEvent(e) {
+  function onWindowEvent(e) {
     repository
       .views
       .list()
       .map(view => {
         return {
-          component: repository.components.get(view.component),
-            context: {
-              view,
-              model: repository.models.get(view.mKey),
-              viewModel: repository.viewModels.get(view.vmKey),
-              util: view.util,
-              events: view.events,
-              el: view.util.el,
-              e,
-              doc,
-              win
-            }
+          view,
+          model: repository.models.get(view.mKey),
+          viewModel: repository.viewModels.get(view.vmKey),
+          util: view.util,
+          events: view.events,
+          el: view.util.el,
+          e,
+          doc,
+          win
         }
       })
-      .forEach(item => {
-        item.component.onWindowEvent(item.context)
+      .forEach(context => {
+        onEvent(context, context.view.events.windowEvents());
       });
   }
 
-    function destroy() {
-        events.forEach(name => win.removeListener(name, onWindowEvent));
-    }
+  function destroy() {
+    events.forEach(name => win.removeListener(name, onWindowEvent));
+  }
 }

@@ -4,12 +4,11 @@ module.exports = {
 const {
   Create,
   Init,
-} = require('core.types')
-  .event.application;
+} = require('../shared/types').event.application;
 
 const {
   htmlToElement,
-} = require('core.util');
+} = require('../shared/util');
 
 function insert(data, repository, doc, win) {
   data.views.forEach(view => {
@@ -20,18 +19,18 @@ function insert(data, repository, doc, win) {
       type: Create
     };
 
-    const context = { 
+    const context = {
       e,
       view,
       viewModel,
       model,
-      util: view.util, 
+      util: view.util,
       events: view.events,
       el: view.util.el,
       doc,
       win
-     };
-     
+    };
+
     const html = component.create(context);
     const element = htmlToElement(html, doc);
     element.id = view.id;

@@ -8,7 +8,7 @@ module.exports = {
 
 const {
   clone
-} = require('core.util');
+} = require('../shared/util');
 
 const _viewModels = {};
 

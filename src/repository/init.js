@@ -1,15 +1,15 @@
-module.exports =  init;
+module.exports = init;
 
 function init(boot, onLoad) {
-     const log =   boot.log || safeLog;
-     const values = ['components', 'layouts', 'request'];
+    const log = boot.log || safeLog;
+    const values = ['components', 'layouts', 'request'];
     values.forEach(value => {
         if (boot[value] == null) {
             log(`${value} is missing`);
 
         }
     });
- 
+
     return {
         log,
         components: boot.components || _components,
@@ -44,9 +44,9 @@ const _request = {
 }
 
 function safeLog() {
-  if (console && console.log) {
+    if (console && console.log) {
         [...arguments].forEach(value => {
-      console.log(value);
-    });
-  }
+            console.log(value);
+        });
+    }
 }

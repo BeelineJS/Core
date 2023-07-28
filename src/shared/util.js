@@ -63,7 +63,7 @@ function htmlToElement(html, doc) {
 }
 
 function pipe(...fns) {
-  return function(value) {
+  return function (value) {
     fns.reduce((v, f) => {
       return f(v)
     }, value);

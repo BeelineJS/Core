@@ -1,5 +1,5 @@
-const util = require('core.util');
-const types = require('core.types');
+const util = require('./shared/util');
+const types = require('./shared/types');
 
 module.exports = {
     create,
@@ -8,8 +8,8 @@ module.exports = {
 }
 
 function create(boot) {
-  
-    const {components, layouts, request, doc, win, log} = require('./repository/init')(boot,onLoad);
+
+    const { components, layouts, request, doc, win, log } = require('./repository/init')(boot, onLoad);
     const repository = require('./repository/repository')(components, layouts, request, doc, log);
     const renderer = require('./render/renderer')(repository, doc, win, log);
     const events = require('./event/events')(repository, renderer, boot.events, doc, win, log);
@@ -35,19 +35,18 @@ function create(boot) {
             events: data.events || []
         }
 
-        const {load, sanitize, save } = repository;
-        const {update} = renderer;
+        const { load, sanitize, save } = repository;
+        const { update } = renderer;
 
         util.pipe(
-           load,
-           update,
-           sanitize,
-           save
+            load,
+            update,
+            sanitize,
+            save
         )(data);
 
         return api;
     }
-
 
     function destroy() {
         observer.destroy();

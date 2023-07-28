@@ -2,7 +2,7 @@ module.exports = {
   create
 }
 
-const _util = require('core.util');
+const _util = require('../shared/util');
 const _observer = require('./observer')
   .create();
 
@@ -115,7 +115,7 @@ function create(request, valueForKey, doc) {
 
   function destroy() {
     _observer.destroy();
-    _views.forEach(v=>v.events.destroy())
+    _views.forEach(v => v.events.destroy())
     _views = null;
   }
 }

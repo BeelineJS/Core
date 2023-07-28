@@ -21,7 +21,7 @@ function create(components, layouts, request, doc, log) {
         data = viewModels.load(data);
         data = models.load(data);
         data = views.load(data);
-        
+
         return data;
     }
 
@@ -41,39 +41,39 @@ function create(components, layouts, request, doc, log) {
         viewModels.sanitize(viewModelKeys);
     }
 
-    function save(){
+    function save() {
         var state = {
             //TODO set hierarchy for layout child/parent 
             layouts: [...doc.querySelectorAll('[data-layout][data-path]')]
-            .map(el => { 
-               return {
-                  name: el.dataset.layout,
-                  parentPath: el.dataset.path
-                }
-            }),
-            models:models.list().map(m=>{
+                .map(el => {
+                    return {
+                        name: el.dataset.layout,
+                        parentPath: el.dataset.path
+                    }
+                }),
+            models: models.list().map(m => {
                 return {
-                    key:m.key,
-                    value:m.value
+                    key: m.key,
+                    value: m.value
                 }
             }),
-            viewModels:viewModels.list().map(vm => {
-                  return {
-                    key:vm.key,
-                    value:vm.value
+            viewModels: viewModels.list().map(vm => {
+                return {
+                    key: vm.key,
+                    value: vm.value
                 }
             }),
-            views: views.list().map(v=>{
-             return {
-                mKey: v.mKey,
-                vmKey:v.vmKey,
-                component: v.component,
-                parentPath: v.parentPath,
-                requestEvents: v.parentPath,
-                bindings: v.bindings || [],
-                dispatch: v.dispatch || [],
-                requestEvents: v.requestEvents || [],
-             }
+            views: views.list().map(v => {
+                return {
+                    mKey: v.mKey,
+                    vmKey: v.vmKey,
+                    component: v.component,
+                    parentPath: v.parentPath,
+                    requestEvents: v.parentPath,
+                    bindings: v.bindings || [],
+                    dispatch: v.dispatch || [],
+                    requestEvents: v.requestEvents || [],
+                }
             })
         }
         // limited to 10mb.

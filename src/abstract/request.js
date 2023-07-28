@@ -6,7 +6,7 @@ const {
     Json,
     Page,
     File
-} = require('core.types').request.types;
+} = require('../shared/types').request.types;
 
 function create(onLoad, onError) {
     return {
