@@ -2,7 +2,7 @@ module.exports = create;
 
 function create(repository, renderer, events = {}, doc, win) {
     const user = require('./user').create(repository, renderer, doc, addFn(doc), removeFn(doc), onEvent, events.user);
-    const document = require('./document').create(repository, doc, addFn(doc), removeFn(doc), onEvent, events.document);
+    const document = require('./document').create(repository, doc, win, addFn(doc), removeFn(doc), onEvent, events.document);
     const window = require('./window').create(repository, win, doc, addFn(win), removeFn(win), onEvent, events.window);
 
     return {

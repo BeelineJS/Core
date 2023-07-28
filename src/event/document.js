@@ -4,7 +4,7 @@ module.exports = {
 
 const defaultEvents = ['mousemove'];
 
-function create(repository, doc, add, remove, onEvent, events = defaultEvents) {
+function create(repository, doc, win, add, remove, onEvent, events = defaultEvents) {
   events.forEach(name => doc.addEventListener(name, onDocumentEvent));
 
   return {
@@ -28,7 +28,8 @@ function create(repository, doc, add, remove, onEvent, events = defaultEvents) {
           util: view.util,
           events: view.events,
           e,
-          doc
+          doc,
+          win
         }
       })
       .forEach(context => {
