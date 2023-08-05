@@ -3,8 +3,14 @@ module.exports = {
 }
 
 const defaultEvents = ['mousemove'];
+const { checkForDoubleClickEvent } = require('./eventsHelper');
+let previousEvent = {
+  type: null,
+  time: 0,
+  key: null
+};
 
-function create(repository, doc, win, add, remove, onEvent, events = defaultEvents) {
+function create(repository, doc, win, add, remove, onEvent, events = defaultEvents, doubleClickDelay = 300) {
   events.forEach(name => doc.addEventListener(name, onDocumentEvent));
 
   return {
@@ -21,15 +27,30 @@ function create(repository, doc, win, add, remove, onEvent, events = defaultEven
       .views
       .list()
       .map(view => {
+
+        const { models, viewModels } = repository;
+
+        let model = models.get(view.mKey);
+        const viewModel = viewModels.get(view.vmKey);
+        const ee = checkForDoubleClickEvent(e, events, previousEvent, doubleClickDelay);
+
+        previousEvent = {
+          type: e.type,
+          time: (new Date()).getTime(),
+          target: e.target
+        }
+
         return {
+          e: ee,
           view,
-          model: repository.models.get(view.mKey),
-          viewModel: repository.viewModels.get(view.vmKey),
+          data: viewModel == null
+            ? {}
+            : viewModel.value,
+          value: model.value,
           util: view.util,
           events: view.events,
-          e,
-          doc,
-          win
+          el: view.util.el,
+          doc, win
         }
       })
       .forEach(context => {

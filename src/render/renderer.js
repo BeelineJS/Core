@@ -61,8 +61,10 @@ function create(repository, doc, win) {
       const context = {
         e,
         view,
-        viewModel,
-        model,
+        data: viewModel == null
+          ? {}
+          : viewModel.value,
+        value: model.value,
         util: view.util,
         events: view.events,
         el: view.util.el,

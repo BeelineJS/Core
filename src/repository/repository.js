@@ -3,7 +3,7 @@ module.exports = create;
 function create(components, layouts, request, doc, log) {
     const viewModels = require('./viewModels');
     const models = require('./models');
-    const views = require('./views').create(request, viewModels.get, doc);
+    const views = require('./views').create(request, viewModels.get, models.getFormData, doc);
 
     return {
         load,

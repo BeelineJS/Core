@@ -6,7 +6,7 @@ const _util = require('../shared/util');
 const _observer = require('./observer')
   .create();
 
-function create(request, valueForKey, doc) {
+function create(request, valueForKey, getFormData, doc) {
   const _views = {};
   let _uid = 1;
 
@@ -44,7 +44,7 @@ function create(request, valueForKey, doc) {
         model: vw.model || null,
         core,
         util: require('./views.utility').create(id, doc),
-        events: require('./views.events').create(core.request),
+        events: require('./views.events').create(core.request, vw, getFormData),
       }
 
       const newView = {

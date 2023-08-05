@@ -2,7 +2,7 @@ module.exports = {
     create
 }
 
-function create(request) {
+function create(request, view, getFormData) {
     let _userEvents = {};
     let _documentEvents = {};
     let _windowEvents = {};
@@ -98,11 +98,11 @@ function create(request) {
 
     function submitFn(request) {
         return function submit() {
-            if (!view.request) return;
+            if (!request) return;
 
             let formData = {};
             if (view.request.formKey) {
-                formData = repository.models.getFormData(view.request.formKey);
+                formData = getFormData(view.request.formKey);
             }
 
             const data = {

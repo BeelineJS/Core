@@ -23,7 +23,7 @@ function create(repository, win, doc, add, remove, onEvent, events = defaultEven
       .map(view => {
         return {
           view,
-          model: repository.models.get(view.mKey),
+          value: repository.models.get(view.mKey).value,
           viewModel: repository.viewModels.get(view.vmKey),
           util: view.util,
           events: view.events,
