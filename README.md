@@ -60,9 +60,6 @@ function _onClick(){
 }
 ```
 
-The events are cought at document level and delegated to all the views.
-User events are bounded by the component scope.
-
 ## Context
 The context is an object transfered between the views to allow access all required data to run the application.
 ```
@@ -75,10 +72,21 @@ The context is an object transfered between the views to allow access all requir
     events,
     el,
     doc,
-    win
+    win,
+    state
 }
 ```
 
+The only items that canbe modified at the component level is the context's state
+
+## events
+The events are cought at document level and distributes to all the views.
+User events are bounded by the component scope.
+By default all events are captured but this can be modified at the application constructor.
+The events being listened to can be modified dynamically.
+
+## render
+The render are the files that add/remove/update the layouts adn view/components data and values to the html.
 
 
 
