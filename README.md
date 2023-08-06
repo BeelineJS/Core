@@ -10,9 +10,9 @@ The code below is the heart of the application and will create all the neccessar
 updates, binding, rendering and sanitizing (removing unused views/models)
 
 
-`util.pipe(
-            load,  
-            update,  
-            sanitize,  
-            save  
+`util.pipe(  \
+            load,  \
+            update, \ 
+            sanitize,  \  
+            save   \
         )(data);`
