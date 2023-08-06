@@ -11,13 +11,8 @@ updates, binding, rendering and sanitizing (removing unused views/models)
 
 
 `util.pipe(
-
-            load,
-            
+            load, 
             update,
-            
             sanitize,
-            
-            save
-            
+            save  
         )(data);`
