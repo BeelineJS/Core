@@ -9,7 +9,8 @@ The `onload` function is where the data converts to html/code.
 The code below is the heart of the application and will create all the neccessary
 updates, binding, rendering and sanitizing (removing unused views/models)
 
-`  util.pipe(
+
+`util.pipe(
             load,
             update,
             sanitize,
