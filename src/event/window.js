@@ -21,17 +21,21 @@ function create(repository, win, doc, add, remove, onEvent, events = defaultEven
       .views
       .list()
       .map(view => {
-        return {
+        const context = {
           view,
           value: repository.models.get(view.mKey).value,
           viewModel: repository.viewModels.get(view.vmKey),
           util: view.util,
           events: view.events,
-          el: view.util.el,
+          el: view.util.el(),
           e,
           doc,
-          win
+          win,
+          state: {}
         }
+        Object.freeze(context);
+
+        return context;
       })
       .forEach(context => {
         onEvent(context, context.view.events.windowEvents());

@@ -40,7 +40,7 @@ function create(repository, doc, win, add, remove, onEvent, events = defaultEven
           target: e.target
         }
 
-        return {
+        const context = {
           e: ee,
           view,
           data: viewModel == null
@@ -49,9 +49,13 @@ function create(repository, doc, win, add, remove, onEvent, events = defaultEven
           value: model.value,
           util: view.util,
           events: view.events,
-          el: view.util.el,
+          el: view.util.el(),
           doc, win
         }
+
+        Object.freeze(context);
+
+        return context;
       })
       .forEach(context => {
         onEvent(context, context.view.events.documentEvents());

@@ -58,9 +58,12 @@ function create(repository, doc, add, remove, onEvent, events = defaultEvents, d
       value: model.value,
       util: view.util,
       events: view.events,
-      el: view.util.el,
-      doc
+      el: view.util.el(),
+      doc,
+      state: {}
     };
+
+    Object.freeze(context);
 
     onEvent(context, view.events.userEvents());
   }

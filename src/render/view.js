@@ -28,10 +28,12 @@ function insert(data, repository, doc, win) {
       value: model.value,
       util: view.util,
       events: view.events,
-      el: view.util.el,
+      el: view.util.el(),
       doc,
-      win
+      win,
+      state: {}
     };
+    Object.freeze(context);
 
     const html = component.create(context);
     const element = htmlToElement(html, doc);
@@ -57,9 +59,13 @@ function insert(data, repository, doc, win) {
       value: model.value,
       util: view.util,
       events: view.events,
-      el: view.util.el,
-      doc
+      el: view.util.el(),
+      doc,
+      win,
+      state: {}
     }
+    Object.freeze(initContext);
+
     component.init(initContext)
 
     return data;

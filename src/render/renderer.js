@@ -67,10 +67,12 @@ function create(repository, doc, win) {
         value: model.value,
         util: view.util,
         events: view.events,
-        el: view.util.el,
+        el: view.util.el(),
         doc,
-        win
+        win,
+        state: {}
       };
+      Object.freeze(context);
 
       component.render(context);
     })
