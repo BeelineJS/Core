@@ -38,6 +38,21 @@ An HTML static layot to position views/components.
 ### Components
 Component can be anything that interact with the user, for example: Button, H1, Text Input or custom components such as Student details.
 
+Component API/Modudle export:
+```
+module.exports = {
+  create,
+  init,
+  render,
+  destroy
+}
+```
+
+The init, render, destroy are not mandatory.
+The destroy is unlikely to be used since all the events/observers are centeralized and auto sanitized when removed, 
+it should be used only if you have custom addEventListeners were used.
+
+
 ### observer
 The observer enable the view to notify and listen to event from other views.
 
