@@ -77,6 +77,7 @@ The context is an object transfered between the views to allow access all requir
 }
 ```
 
+
 The only items that canbe modified at the component level is the context's state
 
 ## events
