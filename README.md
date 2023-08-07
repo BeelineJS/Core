@@ -70,7 +70,7 @@ function init(context) {
   events.user.set(userEvents);
 }
 
-function _onClick(){
+function _onClick(context){
    ...
 }
 ```
