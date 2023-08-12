@@ -55,7 +55,7 @@ function create(repository, doc, win) {
 
     const viewList = distinct([...viewModelViews, ...modelBindings, ...modelViews]);
     viewList.forEach(view => {
-      const component = repository.components.get(view.component);
+      const component = repository.components(view.component);
       const viewModel = repository.viewModels.get(view.vmKey);
       const model = repository.models.get(view.mKey);
       const context = {

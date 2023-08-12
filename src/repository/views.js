@@ -43,8 +43,8 @@ function create(request, valueForKey, getFormData, doc) {
         requestEvents: vw.requestEvents || [],
         model: vw.model || null,
         core,
-        util: require('./views.utility').create(id, doc),
-        events: require('./views.events').create(core.request, vw, getFormData),
+        util: require('./views.utility')(id, doc),
+        events: require('./views.events')(core.request, vw, getFormData),
       }
 
       const newView = {
@@ -96,7 +96,7 @@ function create(request, valueForKey, getFormData, doc) {
 
   function removeFn(id) {
     return function remove() {
-      const el = doc.getElementById(id);
+      const el = doc.querySelector(`[data-id="${id}"]`);
       el.remove();
     }
   }
@@ -104,7 +104,7 @@ function create(request, valueForKey, getFormData, doc) {
   function sanitize() {
 
     const unusedIds = list()
-      .filter(v => doc.getElementById(v.id) == null)
+      .filter(v => doc.querySelector(`[data-id="${v.id}"]`) == null)
       .map(v => v.id);
 
     unusedIds.forEach(id => {

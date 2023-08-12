@@ -4,7 +4,7 @@ module.exports = {
 
 function insert(data, repository, doc) {
   data.layouts.forEach(layout => {
-    const layoutHtml = repository.layouts.get(layout.name);
+    const layoutHtml = repository.layouts(layout.name);
     const parentElement = doc.querySelector(layout.parentPath);
     if (parentElement == null) {
       console.log(`${view.parentPath} is missing`)

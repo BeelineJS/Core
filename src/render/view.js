@@ -12,7 +12,7 @@ const {
 
 function insert(data, repository, doc, win) {
   data.views.forEach(view => {
-    const component = repository.components.get(view.component);
+    const component = repository.components(view.component);
     const viewModel = repository.viewModels.get(view.vmKey);
     const model = repository.models.get(view.mKey);
     const e = {
@@ -37,7 +37,7 @@ function insert(data, repository, doc, win) {
 
     const html = component.create(context);
     const element = htmlToElement(html, doc);
-    element.id = view.id;
+    element.setAttribute('data-id', view.id);
     element.classList.add(view.component);
 
     //TODO: use fragments and insert once at the end of the loop 

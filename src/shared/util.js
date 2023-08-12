@@ -91,11 +91,13 @@ function distinct(arr) {
 
 function getId(e) {
   var el = e.srcElement || e.target;
-  while (el != null && (el.id == null || el.id.indexOf('H') < 0)) {
+  while (el != null && !el.hasAttribute('data-id')) {
     el = el.parentElement;
   }
+
   if (el == null) {
     return null;
   }
-  return el.id;
+
+  return el.getAttribute('data-id');
 }

@@ -1,8 +1,6 @@
-module.exports = {
-  create
-}
+module.exports = utility
 
-function create(id, doc) {
+function utility(id, doc) {
   return {
     encode,
     decode,
@@ -48,7 +46,7 @@ function create(id, doc) {
   }
 
   function el() {
-    return doc.getElementById(id);
+    return doc.querySelector(`[data-id="${id}"]`);
   }
 
   function find(path) {

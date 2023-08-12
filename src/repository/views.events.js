@@ -1,8 +1,6 @@
-module.exports = {
-    create
-}
+module.exports = events;
 
-function create(request, view, getFormData) {
+function events(request, view, getFormData) {
     let _userEvents = {};
     let _documentEvents = {};
     let _windowEvents = {};
