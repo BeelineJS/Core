@@ -1,6 +1,6 @@
 {
   "name": "beelinejs-core",
-  "version": "0.1.28",
+  "version": "0.1.30",
   "main": "./src/beeline.js",
   "directories": {
     "example": "examples"
