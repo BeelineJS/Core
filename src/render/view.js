@@ -66,7 +66,7 @@ function insert(data, repository, doc, win) {
     Object.freeze(initContext);
 
     component.init(initContext)
-
-    return data;
   });
+
+  return data;
 }

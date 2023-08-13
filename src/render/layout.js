@@ -6,7 +6,7 @@ function insert(data, repository, doc) {
     const parentElement = doc.querySelector(layout.parentPath);
     if (parentElement == null) {
       console.log(`${view.parentPath} is missing`)
-      return;
+      return data;
     }
     parentElement.innerHTML = layoutHtml;
     parentElement.dataset.layout = layout.name;

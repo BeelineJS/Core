@@ -13,7 +13,7 @@ function create(context) {
 function render(context) {
   const { view, model, util, doc } = context;
   const html = util.encode(model.value);
-  const el = doc.getElementById(view.id);
+  const el = doc.querySelector(`[data-id="${view.id}"]`);
   //todo: secure html from XSS
   el.innerHTML = html;
 }

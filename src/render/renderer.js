@@ -18,8 +18,8 @@ function create(repository, doc, win) {
   function update(data, eventType = {
     type: Refresh
   }) {
-    data = require('./view')(data, repository, doc);
     data = require('./layout')(data, repository, doc, win);
+    data = require('./view')(data, repository, doc, win);
     refresh(data, eventType);
 
     return data;
