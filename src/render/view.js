@@ -1,6 +1,5 @@
-module.exports = {
-  insert
-}
+module.exports = insert;
+
 const {
   Create,
   Init,

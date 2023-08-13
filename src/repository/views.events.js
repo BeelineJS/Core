@@ -1,6 +1,6 @@
 module.exports = events;
 
-function events(request, view, getFormData) {
+function events(request, view, getFormValues) {
     let _userEvents = {};
     let _documentEvents = {};
     let _windowEvents = {};
@@ -98,15 +98,15 @@ function events(request, view, getFormData) {
         return function submit() {
             if (!request) return;
 
-            let formData = {};
+            let form = {};
             if (view.request.formKey) {
-                formData = getFormData(view.request.formKey);
+                form = getFormValues(view.request.formKey);
             }
 
             const data = {
                 ...view.request,
                 ...{
-                    formData
+                    form
                 }
             }
             request(data);

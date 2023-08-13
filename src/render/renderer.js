@@ -10,9 +10,6 @@ function create(repository, doc, win) {
     distinct
   } = require('../shared/util');
 
-  const view = require('./view');
-  const layout = require('./layout');
-
   return {
     update,
     refresh
@@ -21,8 +18,8 @@ function create(repository, doc, win) {
   function update(data, eventType = {
     type: Refresh
   }) {
-    data = layout.insert(data, repository, doc);
-    data = view.insert(data, repository, doc, win);
+    data = require('./view')(data, repository, doc);
+    data = require('./layout')(data, repository, doc, win);
     refresh(data, eventType);
 
     return data;

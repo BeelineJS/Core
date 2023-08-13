@@ -1,6 +1,4 @@
-module.exports = {
-  insert
-}
+module.exports = insert;
 
 function insert(data, repository, doc) {
   data.layouts.forEach(layout => {

@@ -1,7 +1,7 @@
 module.exports = {
   load,
   get,
-  getFormData,
+  getFormValues,
   set,
   list,
   sanitize,
@@ -19,7 +19,7 @@ function get(key) {
   return clone(_models[key])
 }
 
-function getFormData(formKey) {
+function getFormValues(formKey) {
   return Object.values(_models)
     .filter(m => formKey === m.form)
     .map(m => clone(m))
