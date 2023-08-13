@@ -1,6 +1,6 @@
 {
   "name": "beelinejs-core",
-  "version": "0.1.35",
+  "version": "0.1.36",
   "main": "./src/beeline.js",
   "directories": {
     "example": "examples"
@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "author": "Yaron Shamir<'info@yaronshamir.com'>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "api": "5.0.8",
     "jest-silent-reporter": "0.5.0",
