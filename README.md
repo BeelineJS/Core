@@ -65,8 +65,12 @@ it should be used only if you have custom addEventListeners were used.
 The observer enable the view to notify and listen to event from other views.
 
 ### events
+The events are caught at document level and distributes to all the views.
+User events are bounded by the component scope (`data-id`).  
+By default all events are captured but this can be modified at the application constructor.
+The events being listened to can be modified dynamically.  
 
-The 3 types of events handled are User, Document and Window.
+The 3 types of events handled are `User`, `Document` and `Window`.
 All events can be bounded in the init function:
 
 ```
@@ -104,13 +108,6 @@ The context is an object transferred between the views to allow access all requi
 ```
 
 The only items that can be modified at the component level is the context's state
-
-## events
-
-The events are caught at document level and distributes to all the views.
-User events are bounded by the component scope.
-By default all events are captured but this can be modified at the application constructor.
-The events being listened to can be modified dynamically.
 
 ## render
 
